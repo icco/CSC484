@@ -14,32 +14,49 @@ void setup() {
    smooth();
 }
 
-void draw() {
-   // centered at a,b | radius r | angle t
-   // length z
-   // x1=a+r*cos t, y1=b+r*sin t
-   // x2=x1+z*cos t, y2=y1+z*sin t 
-   float x1, y1, x2, y2, t;
-   int a, b, r, z;
+// centered at a,b | radius r | angle t
+// length l
+void drawALine(a, b, r, l, t) {
+   float x1, y1, x2, y2;
 
-   t = 0.5;
+   x1 = a + r * cos(t);
+   y1 = b + r * -sin(t);
+   x2 = x1 + l * cos(t);
+   y2 = y1 + l * -sin(t);
+
+   line(x1, y1, x2, y2);
+}
+
+void draw() {
+   float x1, y1, x2, y2;
+   int a, b, r;
+
    a = 100; 
    b = 100;
-   r = 40;
-   z = 30;
-   x1 = a + (r * cos(t));
-   y1 = b + (r * sin(t));
-   x2 = x1 + (z * cos(t));
-   y2 = y1 + (z * sin(t));
+   r = 20;
 
    background(0);
    fill(80);
    noStroke();
-   // ellipse(x, y, width, height)
-   ellipse(a, b, r, r);
 
+   // ellipse(x, y, width, height)
    // line(x1, y1, x2, y2)
-   line(x1, y1, x2, y2);
+   ellipse(a, b, r, r);
+   drawALine(a, b, r, 50, 0.1);
+   drawALine(a, b, r, 10, 0.2);
+   drawALine(a, b, r, 20, 0.3);
+   drawALine(a, b, r, 35, 0.4);
+   drawALine(a, b, r, 35, 0.5);
+   drawALine(a, b, r, 22, 0.6);
+   drawALine(a, b, r, 25, 0.7);
+   drawALine(a, b, r, 33, 0.8);
+   drawALine(a, b, r, 31, 0.9);
+   drawALine(a, b, r, 39, 1.0);
+   drawALine(a, b, r, 37, 1.1);
+   drawALine(a, b, r, 15, 1.2);
+   drawALine(a, b, r, 30, 1.3);
+   drawALine(a, b, r, 39, 1.4);
+
    stroke(255);
    strokeWeight(1);
 }
