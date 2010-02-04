@@ -8,48 +8,51 @@
 <h2>Nat's Attempt</h2>
 
 <script type="application/processing">
-void setup() {
-   size(400, 400);
-   stroke(255);
-   smooth();
-}
+   // http://processingjs.org/learning/topic/handles
 
-// centered at a,b | radius r | angle t
-// length l
-void drawALine(a, b, r, l, t) {
-   float x1, y1, x2, y2;
-
-   x1 = a  + (r *  cos(t));
-   y1 = b  + (r * -sin(t));
-   x2 = x1 + (l *  cos(t));
-   y2 = y1 + (l * -sin(t));
-
-   line(x1, y1, x2, y2);
-}
-
-void draw() {
-   float x1, y1, x2, y2;
-   int a, b, r;
-
-   a = 200; 
-   b = 200;
-   r = 70;
-
-   background(0);
-   fill(80);
-   noStroke();
-
-   // ellipse(x, y, width, height)
-   // line(x1, y1, x2, y2)
-   ellipse(a, b, r*2, r*2);
-
-   for (int i = 0; i < 1000; i++) {
-      drawALine(a, b, r, random(100), radians(random(360)));
+   void setup() {
+      frameRate(20);  
+      size(400, 400);
+      stroke(255);
+      smooth();
    }
 
-   stroke(255);
-   strokeWeight(1);
-}
+   // centered at a,b | radius r | angle t
+   // length l
+   void drawALine(a, b, r, l, t) {
+      float x1, y1, x2, y2;
+
+      x1 = a  + (r *  cos(t));
+      y1 = b  + (r * -sin(t));
+      x2 = x1 + (l *  cos(t));
+      y2 = y1 + (l * -sin(t));
+
+      line(x1, y1, x2, y2);
+   }
+
+   void draw() {
+      float x1, y1, x2, y2;
+      int a, b, r;
+
+      a = 200; 
+      b = 200;
+      r = 70;
+
+      background(0);
+      fill(80);
+      noStroke();
+
+      // ellipse(x, y, width, height)
+      // line(x1, y1, x2, y2)
+      ellipse(a, b, r*2, r*2);
+
+      for (int i = 0; i < 1000; i++) {
+         drawALine(a, b, r, random(100), radians(random(360)));
+      }
+
+      stroke(255);
+      strokeWeight(1);
+   }
 </script>
 <canvas width="200" height="200"></canvas>
 
