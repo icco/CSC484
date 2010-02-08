@@ -16,8 +16,10 @@
     */
    class Line {
       int x1, y1, x2, y2;
+      int x3, y3, x4, y4;
       int length;
       int color;
+      int boxwidth = 4; // half of the width of the box
 
       Line (int length, int angle) {
          int a = offsetx;
@@ -26,18 +28,42 @@
          int t = angle;
          int l = length;
 
-         x1 = a  + (r *  cos(t));
-         y1 = b  + (r * -sin(t));
-         x2 = x1 + (l *  cos(t));
-         y2 = y1 + (l * -sin(t));
+         int mx1 = a  + (r *  cos(t));
+         int my1 = b  + (r * -sin(t));
+         int mx2 = mx1 + (l *  cos(t));
+         int my2 = my1 + (l * -sin(t));
+
+
+         // Slope our center line
+         int s = ((my2-my1)/(mx2-mx1));
+
+         // slope of perpendicular line
+         int ps = ((-1)/s);
+
+         // differences 
+         int dx = sqrt(sq(boxwidth)/(1 + sq(ps))) / 2
+         int dy = ps * dx
+
+         // Actualy box boundries
+         x1 = mx1 + dx;
+         y1 = my1 + dy;
+         x4 = mx1 - dx;
+         y4 = my1 - dy;
+
+         x2 = mx2 + dx;
+         y2 = my2 + dy;
+         x3 = mx2 - dx;
+         y3 = my2 - dy;
       }
 
       void draw() {
-         line(x1, y1, x2, y2);
+         // quad(x1, y1, x2, y2, x3, y3, x4, y4)
+         fill(204, 102, 0);
+         quad(x1, y1, x2, y2, x3, y3, x4, y4);
       }
 
       void debug() {
-         console.log(x1, y1, x2, y2);
+         console.log("values: " + x1 + ", " + y1+ ", " +  x2+ ", " +  y2+ ", " +  x3+ ", " +  y3+ ", " +  x4+ ", " +  y4);
       }
 
       void update() { }
