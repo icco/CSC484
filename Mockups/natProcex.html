@@ -35,13 +35,13 @@
 
 
          // Slope our center line
-         int s = ((my2-my1)/(mx2-mx1));
+         int s = ((my2 - my1) / (mx2 - mx1));
 
          // slope of perpendicular line
-         int ps = ((-1)/s);
+         int ps = ((-1) / s);
 
          // differences 
-         int dx = sqrt(sq(boxwidth)/(1 + sq(ps))) / 2
+         int dx = sqrt(sq(boxwidth) / (1 + sq(ps))) / 2
          int dy = ps * dx
 
          // Actualy box boundries
@@ -57,7 +57,6 @@
       }
 
       void draw() {
-         // quad(x1, y1, x2, y2, x3, y3, x4, y4)
          fill(204, 102, 0);
          quad(x1, y1, x2, y2, x3, y3, x4, y4);
       }
