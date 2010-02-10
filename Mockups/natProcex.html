@@ -11,6 +11,21 @@
    Line[] lines;
    int count, radius, offsetx, offsety;
 
+   int areaOfTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+      int a = ((x3*y2)-(x2*y3));
+      int b = ((x3*y1)-(x1*y3));
+      int c = ((x2*y1)-(x1*y2));
+      return a - b + c;
+   }
+
+   int negPosZero(int a) {
+      if (a == 0) {
+         return 0;
+      } else {
+         return a > 0 ? 1 : -1;
+      }
+   }
+
    /**
     * Class for each process instance
     */
@@ -65,9 +80,24 @@
          console.log("values: " + x1 + ", " + y1+ ", " +  x2+ ", " +  y2+ ", " +  x3+ ", " +  y3+ ", " +  x4+ ", " +  y4);
       }
 
-      void update() { }
+      boolean isPointInside(int x, int y) {
+         int area1 = negPosZero(areaOfTriangle(x, y, x1, y1, x2, y2));
+         int area2 = negPosZero(areaOfTriangle(x, y, x2, y2, x3, y3));
+         int area3 = negPosZero(areaOfTriangle(x, y, x3, y3, x4, y4));
+         int area4 = negPosZero(areaOfTriangle(x, y, x4, y4, x1, y1));
+
+         return ((area1 == area2) && (area1 == area3) && (area1 == area4));  
+      }
+
+      void update() {
+         if (isPointInside(mouseX, mouseY)) {
+            // We are inside. Change colors fire events, etc.
+            console.log('INSIDE');
+         }
+      }
    }
 
+   // Called once on load
    void setup() {
       frameRate(20);  
       size(400, 400);
@@ -85,6 +115,7 @@
       }
    }
 
+   // Called the number of frames per second
    void draw() {
       float x1, y1, x2, y2;
 
