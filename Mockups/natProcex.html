@@ -4,141 +4,142 @@
    <title>Nat's Attempt at Reed's Thing</title>
    <script src="js/processing.js"></script>
    <script src="js/init.js"></script>
+</head>
 <body>
-<h2>Nat's Attempt</h2>
+   <h2>Nat's Attempt</h2>
 
-<script type="application/processing">
-   Line[] lines;
-   int count, radius, offsetx, offsety;
+   <script type="application/processing">
+      Line[] lines;
+      int count, radius, offsetx, offsety;
 
-   int areaOfTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
-      int a = ((x3*y2)-(x2*y3));
-      int b = ((x3*y1)-(x1*y3));
-      int c = ((x2*y1)-(x1*y2));
-      return a - b + c;
-   }
-
-   int negPosZero(int a) {
-      if (a == 0) {
-         return 0;
-      } else {
-         return a > 0 ? 1 : -1;
-      }
-   }
-
-   /**
-    * Class for each process instance
-    */
-   class Line {
-      int x1, y1, x2, y2;
-      int x3, y3, x4, y4;
-      int length;
-      int color;
-      int boxwidth = 4; // half of the width of the box
-
-      Line (int length, int angle) {
-         int a = offsetx;
-         int b = offsety;
-         int r = radius;
-         int t = angle;
-         int l = length;
-
-         int mx1 = a  + (r *  cos(t));
-         int my1 = b  + (r * -sin(t));
-         int mx2 = mx1 + (l *  cos(t));
-         int my2 = my1 + (l * -sin(t));
-
-
-         // Slope our center line
-         int s = ((my2 - my1) / (mx2 - mx1));
-
-         // slope of perpendicular line
-         int ps = ((-1) / s);
-
-         // differences 
-         int dx = sqrt(sq(boxwidth) / (1 + sq(ps))) / 2
-         int dy = ps * dx
-
-         // Actualy box boundries
-         x1 = mx1 + dx;
-         y1 = my1 + dy;
-         x4 = mx1 - dx;
-         y4 = my1 - dy;
-
-         x2 = mx2 + dx;
-         y2 = my2 + dy;
-         x3 = mx2 - dx;
-         y3 = my2 - dy;
+      int areaOfTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+         int a = ((x3*y2)-(x2*y3));
+         int b = ((x3*y1)-(x1*y3));
+         int c = ((x2*y1)-(x1*y2));
+         return a - b + c;
       }
 
-      void draw() {
-         fill(204, 102, 0);
-         quad(x1, y1, x2, y2, x3, y3, x4, y4);
-      }
-
-      void debug() {
-         console.log("values: " + x1 + ", " + y1+ ", " +  x2+ ", " +  y2+ ", " +  x3+ ", " +  y3+ ", " +  x4+ ", " +  y4);
-      }
-
-      boolean isPointInside(int x, int y) {
-         int area1 = negPosZero(areaOfTriangle(x, y, x1, y1, x2, y2));
-         int area2 = negPosZero(areaOfTriangle(x, y, x2, y2, x3, y3));
-         int area3 = negPosZero(areaOfTriangle(x, y, x3, y3, x4, y4));
-         int area4 = negPosZero(areaOfTriangle(x, y, x4, y4, x1, y1));
-
-         return ((area1 == area2) && (area1 == area3) && (area1 == area4));  
-      }
-
-      void update() {
-         if (isPointInside(mouseX, mouseY)) {
-            // We are inside. Change colors fire events, etc.
-            console.log('INSIDE');
+      int negPosZero(int a) {
+         if (a == 0) {
+            return 0;
+         } else {
+            return a > 0 ? 1 : -1;
          }
       }
-   }
 
-   // Called once on load
-   void setup() {
-      frameRate(20);  
-      size(400, 400);
-      stroke(255);
-      smooth();
-      count = 10;
-      lines = new Line[count];
+      /**
+       * Class for each process instance
+       */
+      class Line {
+         int x1, y1, x2, y2;
+         int x3, y3, x4, y4;
+         int length;
+         int color;
+         int boxwidth = 4; // half of the width of the box
 
-      offsetx = 200;
-      offsety = 200;
-      radius = 70;
+         Line (int length, int angle) {
+            int a = offsetx;
+            int b = offsety;
+            int r = radius;
+            int t = angle;
+            int l = length;
 
-      for (int i = 0; i < count; i++) {
-         lines[i] = new Line(random(100), radians(random(360)));
+            int mx1 = a  + (r *  cos(t));
+            int my1 = b  + (r * -sin(t));
+            int mx2 = mx1 + (l *  cos(t));
+            int my2 = my1 + (l * -sin(t));
+
+
+            // Slope our center line
+            int s = ((my2 - my1) / (mx2 - mx1));
+
+            // slope of perpendicular line
+            int ps = ((-1) / s);
+
+            // differences 
+            int dx = sqrt(sq(boxwidth) / (1 + sq(ps))) / 2
+            int dy = ps * dx
+
+            // Actualy box boundries
+            x1 = mx1 + dx;
+            y1 = my1 + dy;
+            x4 = mx1 - dx;
+            y4 = my1 - dy;
+
+            x2 = mx2 + dx;
+            y2 = my2 + dy;
+            x3 = mx2 - dx;
+            y3 = my2 - dy;
+         }
+
+         void draw() {
+            fill(204, 102, 0);
+            quad(x1, y1, x2, y2, x3, y3, x4, y4);
+         }
+
+         void debug() {
+            console.log("values: " + x1 + ", " + y1+ ", " +  x2+ ", " +  y2+ ", " +  x3+ ", " +  y3+ ", " +  x4+ ", " +  y4);
+         }
+
+         boolean isPointInside(int x, int y) {
+            int area1 = negPosZero(areaOfTriangle(x, y, x1, y1, x2, y2));
+            int area2 = negPosZero(areaOfTriangle(x, y, x2, y2, x3, y3));
+            int area3 = negPosZero(areaOfTriangle(x, y, x3, y3, x4, y4));
+            int area4 = negPosZero(areaOfTriangle(x, y, x4, y4, x1, y1));
+
+            return ((area1 == area2) && (area1 == area3) && (area1 == area4));  
+         }
+
+         void update() {
+            if (isPointInside(mouseX, mouseY)) {
+               // We are inside. Change colors fire events, etc.
+               console.log('INSIDE');
+            }
+         }
       }
-   }
 
-   // Called the number of frames per second
-   void draw() {
-      float x1, y1, x2, y2;
+      // Called once on load
+      void setup() {
+         frameRate(20);  
+         size(400, 400);
+         stroke(255);
+         smooth();
+         count = 10;
+         lines = new Line[count];
 
-      background(0);
-      fill(80);
-      noStroke();
+         offsetx = 200;
+         offsety = 200;
+         radius = 70;
 
-      // ellipse(x, y, width, height)
-      // line(x1, y1, x2, y2)
-      ellipse(offsetx, offsety, radius*2, radius*2);
-
-      stroke(255);
-      strokeWeight(1);
-
-      for (int i = 0; i < count; i++) {
-         lines[i].update();
-         lines[i].draw();
+         for (int i = 0; i < count; i++) {
+            lines[i] = new Line(random(100), radians(random(360)));
+         }
       }
-   }
-</script>
-<canvas width="200" height="200"></canvas>
 
-<div style="height:0px;width:0px;overflow:hidden;"></div>
+      // Called the number of frames per second
+      void draw() {
+         float x1, y1, x2, y2;
+
+         background(0);
+         fill(80);
+         noStroke();
+
+         // ellipse(x, y, width, height)
+         // line(x1, y1, x2, y2)
+         ellipse(offsetx, offsety, radius*2, radius*2);
+
+         stroke(255);
+         strokeWeight(1);
+
+         for (int i = 0; i < count; i++) {
+            lines[i].update();
+            lines[i].draw();
+         }
+      }
+   </script>
+   <canvas width="200" height="200"></canvas>
+
+   <div style="height:0px;width:0px;overflow:hidden;"></div>
 
 </body>
 </html>
