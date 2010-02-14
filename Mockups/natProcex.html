@@ -19,6 +19,7 @@
    <script type="application/processing">
       Line[] lines;
       int count, radius, offsetx, offsety;
+      Line lastActive;
 
       int areaOfTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
          int a = ((x3*y2)-(x2*y3));
@@ -53,7 +54,7 @@
          }
 
          void draw() {
-            fill(204, 102, 0);
+            fill(#C4574E);
             quad(x1, y1, x2, y2, x3, y3, x4, y4);
          }
 
@@ -72,51 +73,55 @@
          void update() {
             if (isPointInside(mouseX, mouseY)) {
                // We are inside. Change colors fire events, etc.
+               changed = !(boxwidth != 20);
                boxwidth = 20;
-               $('#bd').html("yay...");
+               lastActive = this; // ADDED THIS LINE
             } else {
+               changed = !(boxwidth != 5);
                boxwidth = 5;
-               $('#bd').html("nay");
             }
 
-            // Calculate everything
-            int a = offsetx;
-            int b = offsety;
-            int r = radius;
-            int t = angle;
-            int l = length;
+            if (changed) {
+               // Calculate everything
+               int a = offsetx;
+               int b = offsety;
+               int r = radius;
+               int t = angle;
+               int l = length;
 
-            int mx1 = a  + (r *  cos(t));
-            int my1 = b  + (r * -sin(t));
-            int mx2 = mx1 + (l *  cos(t));
-            int my2 = my1 + (l * -sin(t));
+               int mx1 = a  + (r *  cos(t));
+               int my1 = b  + (r * -sin(t));
+               int mx2 = mx1 + (l *  cos(t));
+               int my2 = my1 + (l * -sin(t));
 
-            // Slope our center line
-            int s = ((my2 - my1) / (mx2 - mx1));
+               // Slope our center line
+               int s = ((my2 - my1) / (mx2 - mx1));
 
-            // slope of perpendicular line
-            int ps = ((-1) / s);
+               // slope of perpendicular line
+               int ps = ((-1) / s);
 
-            // differences 
-            int dx = sqrt(sq(boxwidth) / (1 + sq(ps))) / 2
-            int dy = ps * dx
+               // differences 
+               int dx = sqrt(sq(boxwidth) / (1 + sq(ps))) / 2
+               int dy = ps * dx
 
-            // Actualy box boundries
-            x1 = mx1 + dx;
-            y1 = my1 + dy;
-            x4 = mx1 - dx;
-            y4 = my1 - dy;
+               // Actualy box boundries
+               x1 = mx1 + dx;
+               y1 = my1 + dy;
+               x4 = mx1 - dx;
+               y4 = my1 - dy;
 
-            x2 = mx2 + dx;
-            y2 = my2 + dy;
-            x3 = mx2 - dx;
-            y3 = my2 - dy;
+               x2 = mx2 + dx;
+               y2 = my2 + dy;
+               x3 = mx2 - dx;
+               y3 = my2 - dy;
+               changed = false;
+            }
          }
       }
 
       // Called once on load
       void setup() {
-         frameRate(20);  
+         frameRate(40);  
          size(400, 400);
          stroke(255);
          smooth();
@@ -130,6 +135,7 @@
          for (int i = 0; i < count; i++) {
             lines[i] = new Line(random(100), radians(random(360)));
          }
+         lastActive = lines[i-1]; // set the initial last active
       }
 
       // Called the number of frames per second
@@ -137,7 +143,7 @@
          float x1, y1, x2, y2;
 
          background(255);
-         fill(200);
+         fill(#8C004E);
          noStroke();
 
          ellipse(offsetx, offsety, radius*2, radius*2);
@@ -149,6 +155,10 @@
             lines[i].update();
             lines[i].draw();
          }
+
+         // Draw the last active bar last so it sits on top of the rest
+         lastActive.update();
+         lastActive.draw(); 
       }
    </script>
    <div id="info-box">
