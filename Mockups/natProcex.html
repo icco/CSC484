@@ -1,21 +1,56 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-   <title>Nat's Attempt at Reed's Thing</title>
-   <script src="js/processing.js"></script>
-   <script src="js/init.js"></script>
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
-   <style>
-      #info-box {
-         float: right;
-         border: 1px black solid;
-         height: 200px;
-         width: 400px;
-      }
-   </style>
-</head>
-<body>
-   <h2>Nat's Attempt</h2>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>NeedleStack</title>
+        <link rel="stylesheet" type="text/css" href="yui/build/reset-fonts-grids/reset-fonts-grids.css">
+        <link rel="stylesheet" type="text/css" href="yui/build/menu/assets/skins/sam/menu.css">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+        <script type="text/javascript" src="yui/build/container/container_core.js"></script>
+        <script type="text/javascript" src="yui/build/menu/menu.js"></script>
+
+        <script src="js/processing.js"></script>
+        <script src="js/init.js"></script>
+        <script type="text/javascript">
+            YAHOO.util.Event.onContentReady("nav_bar", function () {
+                var oMenuBar = new YAHOO.widget.MenuBar("nav_bar", {
+                    autosubmenudisplay: true,
+                    hidedelay: 750,
+                    lazyload: true });
+                oMenuBar.render();
+                
+            });
+        </script>
+    </head>
+    <body class="yui-skin-sam" id="yahoo-com">
+        <div id="header" class="yui-t1">
+            <div id="hd">
+                <h1>NeedleStack</h1>
+            </div>
+            <div>
+                <div id="nav_bar" class="yuimenubar yuimenubarnav">
+                    <div class="bd">
+                        <ul class="first-of-type">
+                            <li class="yuimenubaritem first-of-type"><a class="yuimenubaritemlabel" href=".">Main</a></li>
+                            <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="./filter/index.html">Filter View</a></li>
+                            <li class="yuimenubaritem"><a class="yuimenubaritemlabel" href="./vertical/index.html">Vertical View</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 15px;" class="yui-t2">
+            <div id="id">
+               <h2>About</h2>
+               NeedleStack is an attempt to make watching what is happening
+               with your team's workflow processes easier.
+            </div>
+            <div id="about-box" class="tui-t3">
+               <h2>Instance #1234 info</h2>
+               Info about a hovered process instance goes here. Otherwise
+               generic statistics about the whole process go here.
+            </div>
    <script type="application/processing">
       Line[] lines;
       int count, radius, offsetx, offsety;
@@ -161,14 +196,7 @@
          lastActive.draw(); 
       }
    </script>
-   <div id="info-box">
-      <h2 id="hd">Header goes here</h2>
-      <div id="bd">
-         .
-      </div>
-   </div>
-   <canvas width="200" height="200"></canvas>
-
-   <div style="height:0px;width:0px;overflow:hidden;"></div>
-</body>
+            <canvas width="200" height="200" style="float: left;"></canvas>
+        </div>
+    </body>
 </html>
