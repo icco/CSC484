@@ -1,0 +1,174 @@
+<!doctype html> <!-- hello html5 :) -->
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="language" content="en" />
+	<title>hzzah! needlestack</title>
+	
+<!--	<link rel="icon" href="favicon.png"/> -->
+	<link rel="stylesheet" href="skin/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/jquery-1.4.1.js"></script>
+	<script type="text/javascript">
+			$(function() {
+				var toggled = false;
+				$("#instance-info").hide();
+				$("#more-info").click(function() {
+					$("#more-info").hide();
+					$("#instance-info").show();
+				});
+				
+				$("#instance-toggle").click(function() {
+					if(toggled) {
+						$(".current").removeClass("uhoh");
+						$(".shown").addClass("hidden").removeClass("shown");
+						$(".big-text").removeClass("uhoh");
+					} else {
+						$(".current").addClass("uhoh");
+						$(".hidden").addClass("shown").removeClass("hidden");
+						$(".big-text").addClass("uhoh");
+					}
+					toggled = !toggled;
+				});
+			});
+		</script>
+</head>
+<body>
+	<div id="instance-toggle">
+		<div id="nav">
+			<ul><li><a href="#">toggle stopped</a></li></ul>
+		</div>
+	</div>
+<div id="head">
+	<h1>needlestack</h1>
+	<div id="nav">
+		<ul>
+			<li><a href="index.html">radial</a></li>
+			<li><a href="filter.html">filter</a></li>
+			<li class="selected"><a href="instance.html">instance</a></li>
+		</ul>
+	</div>
+</div>
+<div id="content">
+	<ul id="instance-page">
+		<div id="float-box">
+			<span class="big-text">9 days</span>
+			<span class="little-text">Started March 23rd</span>
+			<ul id="instance-info">
+				<li>Existing Hostnames: <span class="answer">existing.com, api.existing.com</span</li>
+				<li>New Hostnames: <span class="answer">tftp1.ops.colo1.yahoo.com</span></li>
+				</span><li>Destination VLAN: <span class="answer">destinationVLAN</li>
+				<li>Property: <span class="answer">Yahoo</span></li>
+				<li>Destination Colo: <span class="answer">colo1</span></li>
+				<li>SLA: <span class="answer">12 days</span></li>
+				
+				<span class="br"> </span>
+				
+				<li>Hosts in Production: <span class="answer">yes &#10003;</span></li>
+				<li>Applications halted: <span class="answer">yes &#10003;</span></li>
+				<li>Need VIP: <span class="answer">yes &#10003;</span></li>
+				<li>Need backup in new colo: <span class="answer">yes &#10003;</span></li>
+				<li>Need backup before move: <span class="answer">yes &#10003;</span></li>
+				<li>Require ACLs: <span class="answer">yes &#10003;</span></li>
+				<li>Need recloning: <span class="answer">yes &#10003;</span></li>
+				<li>Downtime tolerated: <span class="answer no">no &#9889;</span></li>
+				
+				<span class="br"> </span>
+				
+				<li>Reason for move: <span class="answer nofloat">bit bored where we were</span></li>
+				</span><li>Notes: <span class="answer nofloat">chatty chat</span></li>
+			</ul>
+			<div id="more-info">
+				Expand information...
+			</div>
+		</div>
+		<li class="current">
+			<span class="circle current bla"></span>
+			<span class="text">
+				<h1>Deploying virtual machine</h1>
+				<h3><a href="#">#8402</a></h3> <h2>Started March 9 (today).</h2>
+				<span class="uhoh hidden">
+					<h3><a href="#">#8402</a></h3> <h2>Needs attention &#9889;</h2>
+				<span>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Waited for confirmation of DNS</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 8 (yesterday).</h2><br />
+				<h3><a href="#">#2377</a></h3> <h2>Finished March 8 (yesterday).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Allocated DNS</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 8 (yesterday).</h2><br />
+				<h3><a href="#">#4563</a></h3> <h2>Finished March 8 (yesterday).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Waited for confirmation of IP</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 7 (2 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 7 (2 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Allocated IP address</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 7 (2 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 7 (2 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Reticulating splines</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 6 (3 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 6 (3 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Particulating hydrides</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 6 (3 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 6 (3 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Absorbing meta-triculation</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 6 (3 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 6 (3 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Transmitting polygon mesh</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 6 (3 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 4 (5 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Analyzing maximum throughput</h1>
+				<h3><a href="#">#2377</a></h3> <h2>Started March 4 (5 days ago).</h2><br />
+				<h3><a href="#">#4069</a></h3> <h2>Finished March 4 (5 days ago).</h2>
+			</span>
+		</li>
+		<li class="done">
+			<span class="circle done"></span>
+			<span class="text">
+				<h1>Migration started by Tyler Durden</h1>
+				<h3><a href="#">#2120</a></h3> <h2>Started 1 week ago.</h2>
+			</span>
+		</li>
+	</ul>
+<div class="clearfix"></div></div><div id="foot"></div></body></html>
