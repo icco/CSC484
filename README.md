@@ -13,4 +13,9 @@ prompt was to build a workflow managment type system. You can
  * https://wiki.csc.calpoly.edu/484-W10-Yahoo-Coordination/wiki
  * https://wiki.csc.calpoly.edu/484W10-hzzah
 
+## Team
 
+Interaction Designer -  Erik Carpenter &amp; John Welsh?
+Visual Designer - Reed Morse &amp; David Pan
+User Experience Researcher -  William Whitney
+Front-End Engineer - Nathaniel Welch
