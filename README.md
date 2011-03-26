@@ -15,7 +15,10 @@ prompt was to build a workflow managment type system. You can
 
 ## Team
 
-Interaction Designer -  Erik Carpenter &amp; John Welsh?
+Interaction Designer - Erik Carpenter &amp; John Welsh
+
 Visual Designer - Reed Morse &amp; David Pan
-User Experience Researcher -  William Whitney
+
+User Experience Researcher - William Whitney
+
 Front-End Engineer - Nathaniel Welch
